@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         colors="true"
+         cacheResultFile="var/.phpunit.cache/test-results"
+         verbose="true">
+
+  <php>
+    <ini name="error_reporting" value="32767"/>
+    <ini name="display_errors" value="stdout"/>
+    <!-- define your env variables for the test env here -->
+
+    <!-- DOCKER -->
+    <env name="DATABASE_HOST" value="aos_mysql" force="true" />
+    <!-- env name="DATABASE_PORT" value="3306" force="true" /-->
+    <env name="DATABASE_NAME" value="db_name_test" force="true" />
+    <env name="DATABASE_USER" value="root" force="true" />
+    <env name="DATABASE_PASSWD" value="root" force="true" />
+    <!-- env name="DATABASE_DRIVER" value="pdo_mysql" force="true" /-->
+    <!-- env name="DATABASE_CHARSET" value="UTF8" force="true" /-->
+
+    <env name="ADMIN_USER_NAME" value="adminTDW" force="true" />
+    <env name="ADMIN_USER_EMAIL" value="adminTDW@example.com" force="true" />
+    <env name="ADMIN_USER_PASSWD" value="*adminTDW*" force="true" />
+
+    <env name="ENTITY_DIR" value="src/Entity/" force="true" />
+    <!-- env name="DEBUG" value="0" /-->
+
+    <env name="RUTA_API" value="/api/v1" force="true" />
+    <env name="RUTA_LOGIN" value="/access_token" force="true" />
+    <env name="JWT_SECRET" value="68V0zWFrS72GbpPreidkQFLfj4v9m3Ti+DXc8OB0gcM=" force="true" />
+    <!-- DOCKER -->
+  </php>
+
+  <testsuites>
+    <testsuite name="TDW ACiencia API testing">
+      <directory>tests</directory>
+    </testsuite>
+  </testsuites>
+
+  <coverage cacheDirectory="var/.phpunit.cache/code-coverage">
+    <include>
+      <directory>src/</directory>
+    </include>
+    <exclude>
+      <directory>src/scripts/</directory>
+      <directory>src/Factory/</directory>
+      <directory>src/Handler/</directory>
+      <directory>src/Utility/</directory>
+    </exclude>
+    <report>
+      <html outputDirectory="var/coverage/" />
+      <!-- text outputFile="var/coverage/coverage.txt" / !-->
+    </report>
+  </coverage>
+</phpunit>

@@ -1,0 +1,53 @@
+version: "3"
+
+services:
+    apache:
+        build: .docker/apache
+        container_name: aos_apache
+        ports:
+            - "8000:80"
+        volumes:
+            - .docker/config/vhosts:/etc/apache2/sites-enabled:ro
+            - .:/home/wwwroot/aos:rw
+        depends_on:
+            - php
+
+    mysql:
+        image: mysql
+        command: "--default-authentication-plugin=mysql_native_password --lower_case_table_names=2"
+        container_name: aos_mysql
+        volumes:
+            - .docker/data/db:/var/lib/mysql:rw
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: ${DATABASE_NAME:?"Variable MYSQL_DATABASE no definida"}
+#            MYSQL_USER: ${DATABASE_USER:?"Variable MYSQL_USER no definida"}
+            MYSQL_PASSWORD: ${DATABASE_PASSWD:?"Variable MYSQL_PASSWORD no definida"}
+        restart: on-failure
+        ports:
+            - "3306:3306"
+
+    php:
+        build: .docker/php
+        container_name: aos_php
+        volumes:
+            - .:/home/wwwroot/aos
+        environment:
+            MYSQL_TEST_DATABASE: ${DATABASE_TEST_NAME?"Variable MYSQL_TEST_DATABASE no definida"}
+            DOCKER: 1
+        ports:
+            - "9000:9000"
+            # - "9003:9003"
+        depends_on:
+            - mysql
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        container_name: aos_phpmyadmin
+        environment:
+            PMA_HOST: mysql
+            PMA_PORT: 3306
+        ports:
+            - "8080:80"
+        depends_on:
+            - mysql

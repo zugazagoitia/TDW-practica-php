@@ -1,0 +1,21 @@
+{
+    "source": {
+        "directories": [
+            "src"
+        ],
+        "excludes": [
+            "scripts"
+        ]
+    },
+    "timeout": 15,
+    "logs": {
+        "text": "var/infection/infection-log.txt",
+        "summary": "var/infection/infection-summary.log"
+    },
+    "tmpDir": "var/infection/tmp",
+    "mutators": {
+        "@default": true
+    },
+    "testFramework": "phpunit",
+    "initialTestsPhpOptions": "-dxdebug.mode=coverage"
+}

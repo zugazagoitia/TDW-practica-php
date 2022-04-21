@@ -1,0 +1,10 @@
+/.idea/
+/vendor/
+.env.*
+/phpunit.xml
+/config/*.pem
+/var/
+/.docker/data/db/
+
+# JIRA plugin
+atlassian-ide-plugin.xml

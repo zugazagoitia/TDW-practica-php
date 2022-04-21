@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[TDW] ACiencia - Demo AJAX </title>
+    <script src="https://unpkg.com/jquery@1"></script>
+</head>
+<body>
+    <form id="form-login" method="post">
+        <label for="username">Usuario: </label>
+        <input type="text" id="username" name="username" placeholder="Usuario" autofocus/>
+        <label for="password">Contraseña: </label>
+        <input type="password" id="password" name="password" placeholder="Palabra clave"/>
+        <input type="button" id="btn-login" value="Login" />
+    </form>
+    <hr/>
+    <code><span id="mytoken">Scopes: (null)</span></code>
+    <hr/>
+    <code><span id="products">Products: (null)</span></code>
+    <hr/>
+    <code><span id="users">Users: (null)</span></code>
+
+<script type="text/javascript">
+    let authHeader = null;
+    $("#btn-login").click(function(){
+        $.post(
+            "/access_token",
+            $("#form-login").serialize(),
+            null
+            ).success(function (data, textStatus, request) {
+                // => show scopes, users, products, ...
+                authHeader = request.getResponseHeader('Authorization');
+                showData(authHeader);
+                console.log(data)
+            }).fail(function (xhr) {
+                if (xhr.responseJSON && xhr.responseJSON.message) {
+                message = xhr.responseJSON.message;
+                }
+                alert("Incorrecto :( \n" + message)
+            });
+    });
+
+    function showData(authHeader) {
+        showToken(authHeader);
+        showProducts(authHeader);
+        showUsers(authHeader);
+    }
+
+    function showToken(authHeader) {
+        let token = authHeader.split(' ')[1];   // Elimina 'Bearer '
+        let myData = JSON.parse(atob(token.split('.')[1]));
+        console.log("JWT: " + token);
+        $('#mytoken').html(
+            "User: " + JSON.stringify(myData.sub) +
+            " - JWT Scopes: " + JSON.stringify(myData.scopes)
+        );
+    }
+
+    function showProducts(authHeader) {
+        $.ajax({
+            type: "GET",
+            url: '/api/v1/products',
+            headers: {"Authorization": authHeader},
+            // dataType: 'json',
+            success: function (data) {
+                $('#products').html(JSON.stringify(data));
+            }
+        })
+    }
+
+    function showUsers(authHeader) {
+        $.ajax({
+            type: "GET",
+            url: '/api/v1/users',
+            headers: {"Authorization": authHeader},
+            // dataType: 'json',
+            success: function (data) {
+                $('#users').html(JSON.stringify(data));
+            }
+        })
+    }
+</script>
+</body>
+</html>

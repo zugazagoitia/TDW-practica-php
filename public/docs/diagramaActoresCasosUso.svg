@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="1069px" preserveAspectRatio="none" style="width:788px;height:1069px;" version="1.1" viewBox="0 0 788 1069" width="788px" zoomAndPan="magnify">
+    <defs>
+        <filter height="300%" id="f1l9h3qk426lu1" width="300%" x="-1" y="-1">
+            <feGaussianBlur result="blurOut" stdDeviation="2.0"/>
+            <feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/>
+            <feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/>
+            <feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/>
+        </filter>
+    </defs>
+    <g>
+        <!--cluster readers-->
+        <polygon fill="#FFFFFF" filter="url(#f1l9h3qk426lu1)" points="225.5,841,286.5,841,293.5,864.6094,581,864.6094,581,1057,225.5,1057,225.5,841" style="stroke: #000000; stroke-width: 1.5;"/>
+        <line style="stroke: #000000; stroke-width: 1.5;" x1="225.5" x2="293.5" y1="864.6094" y2="864.6094"/>
+        <text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="55" x="229.5" y="857.5332">
+            readers
+        </text>
+        <!--cluster writers-->
+        <polygon fill="#FFFFFF" filter="url(#f1l9h3qk426lu1)" points="83,24,138,24,145,47.6094,577,47.6094,577,770,83,770,83,24" style="stroke: #000000; stroke-width: 1.5;"/>
+        <line style="stroke: #000000; stroke-width: 1.5;" x1="83" x2="145" y1="47.6094" y2="47.6094"/>
+        <text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="49" x="87" y="40.5332">
+            writers
+        </text>
+        <!--entity Reader-->
+        <ellipse cx="265" cy="901.5" fill="#FEFECE" filter="url(#f1l9h3qk426lu1)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 2.0;"/>
+        <path d="M265,909.5 L265,936.5 M252,917.5 L278,917.5 M265,936.5 L252,951.5 M265,936.5 L278,951.5 " fill="none" filter="url(#f1l9h3qk426lu1)" style="stroke: #A80036; stroke-width: 2.0;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="47" x="241.5" y="973.0332">
+            Reader
+        </text>
+        <ellipse cx="506.7548" cy="892.9517" fill="#FEFECE" filter="url(#f1l9h3qk426lu1)" rx="48.2548" ry="15.4517" style="stroke: #A80036; stroke-width: 1.5;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="64" x="474.7548" y="898.2564">
+            readEntity
+        </text>
+        <ellipse cx="506.8259" cy="958.9517" fill="#FEFECE" filter="url(#f1l9h3qk426lu1)" rx="55.3259" ry="15.4517" style="stroke: #A80036; stroke-width: 1.5;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="74" x="469.8259" y="964.2564">
+            readPerson
+        </text>
+        <ellipse cx="507.1543" cy="1024.9517" fill="#FEFECE" filter="url(#f1l9h3qk426lu1)" rx="58.1543" ry="15.4517" style="stroke: #A80036; stroke-width: 1.5;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="78" x="468.1543" y="1030.2564">
+            readProduct
+        </text>
+        <!--entity Writer-->
+        <ellipse cx="118" cy="421.5" fill="#FEFECE" filter="url(#f1l9h3qk426lu1)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 2.0;"/>
+        <path d="M118,429.5 L118,456.5 M105,437.5 L131,437.5 M118,456.5 L105,471.5 M118,456.5 L131,471.5 " fill="none" filter="url(#f1l9h3qk426lu1)" style="stroke: #A80036; stroke-width: 2.0;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="38" x="99" y="493.0332">
+            Writer
+        </text>
+        <ellipse cx="265.2132" cy="737.9517" fill="#FEFECE" filter="url(#f1l9h3qk426lu1)" rx="24.2132" ry="15.4517" style="stroke: #A80036; stroke-width: 1.5;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="30" x="250.2132" y="743.2564">
+            login
+        </text>
+        <ellipse cx="265.033" cy="671.9517" fill="#FEFECE" filter="url(#f1l9h3qk426lu1)" rx="56.033" ry="15.4517" style="stroke: #A80036; stroke-width: 1.5;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="75" x="227.533" y="677.2564">
+            createPerson
+        </text>
+        <ellipse cx="265.1041" cy="473.9517" fill="#FEFECE" filter="url(#f1l9h3qk426lu1)" rx="63.1041" ry="15.4517" style="stroke: #A80036; stroke-width: 1.5;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="85" x="222.6041" y="479.2564">
+            createEntity
+        </text>
+        <ellipse cx="265.0964" cy="408.0193" fill="#FEFECE" filter="url(#f1l9h3qk426lu1)" rx="65.5964" ry="15.5193" style="stroke: #A80036; stroke-width: 1.5;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="89" x="220.5964" y="413.324">
+            createProduct
+        </text>
+        <ellipse cx="264.8614" cy="605.9517" fill="#FEFECE" filter="url(#f1l9h3qk426lu1)" rx="58.8614" ry="15.4517" style="stroke: #A80036; stroke-width: 1.5;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="79" x="225.3614" y="611.2564">
+            updatePerson
+        </text>
+        <ellipse cx="265.0964" cy="540.0193" fill="#FEFECE" filter="url(#f1l9h3qk426lu1)" rx="65.5964" ry="15.5193" style="stroke: #A80036; stroke-width: 1.5;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="89" x="220.5964" y="545.324">
+            updateEntity
+        </text>
+        <ellipse cx="265.0337" cy="340.8067" fill="#FEFECE" filter="url(#f1l9h3qk426lu1)" rx="67.0337" ry="15.8067" style="stroke: #A80036; stroke-width: 1.5;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="93" x="218.5337" y="346.1114">
+            updateProduct
+        </text>
+        <ellipse cx="264.8259" cy="273.9517" fill="#FEFECE" filter="url(#f1l9h3qk426lu1)" rx="55.3259" ry="15.4517" style="stroke: #A80036; stroke-width: 1.5;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="74" x="227.8259" y="279.2564">
+            deleteEntity
+        </text>
+        <ellipse cx="264.897" cy="207.9517" fill="#FEFECE" filter="url(#f1l9h3qk426lu1)" rx="62.397" ry="15.4517" style="stroke: #A80036; stroke-width: 1.5;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="84" x="222.897" y="213.2564">
+            deletePerson
+        </text>
+        <ellipse cx="265.2254" cy="141.9517" fill="#FEFECE" filter="url(#f1l9h3qk426lu1)" rx="65.2254" ry="15.4517" style="stroke: #A80036; stroke-width: 1.5;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="88" x="221.2254" y="147.2564">
+            deleteProduct
+        </text>
+        <ellipse cx="507.0122" cy="539.9517" fill="#FEFECE" filter="url(#f1l9h3qk426lu1)" rx="44.0122" ry="15.4517" style="stroke: #A80036; stroke-width: 1.5;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="58" x="478.0122" y="545.2564">
+            editEntity
+        </text>
+        <ellipse cx="507.0833" cy="671.9517" fill="#FEFECE" filter="url(#f1l9h3qk426lu1)" rx="51.0833" ry="15.4517" style="stroke: #A80036; stroke-width: 1.5;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="68" x="473.0833" y="677.2564">
+            editPerson
+        </text>
+        <ellipse cx="506.9117" cy="407.9517" fill="#FEFECE" filter="url(#f1l9h3qk426lu1)" rx="53.9117" ry="15.4517" style="stroke: #A80036; stroke-width: 1.5;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="72" x="470.9117" y="413.2564">
+            editProduct
+        </text
+        ><ellipse cx="265.0772" cy="75.9517" fill="#FEFECE" filter="url(#f1l9h3qk426lu1)" rx="30.5772" ry="15.4517" style="stroke: #A80036; stroke-width: 1.5;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="39" x="245.5772" y="81.2564">
+            logout
+        </text>
+        <!--entity User-->
+        <ellipse cx="21" cy="774.5" fill="#FEFECE" filter="url(#f1l9h3qk426lu1)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 2.0;"/><path d="M21,782.5 L21,809.5 M8,790.5 L34,790.5 M21,809.5 L8,824.5 M21,809.5 L34,824.5 " fill="none" filter="url(#f1l9h3qk426lu1)" style="stroke: #A80036; stroke-width: 2.0;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="29" x="6.5" y="846.0332">
+            User
+        </text>
+        <ellipse cx="730.8406" cy="806.9517" fill="#FEFECE" filter="url(#f1l9h3qk426lu1)" rx="46.8406" ry="15.4517" style="stroke: #A80036; stroke-width: 1.5;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="62" x="699.8406" y="812.2564">
+            readIndex
+        </text>
+        <!--link User to readIndex-->
+        <path d="M36.1636,807 C54.7278,807 88.3021,807 117,807 C117,807 117,807 508,807 C566.45,807 633.558,807 678.552,807 " fill="none" id="User-readIndex" style="stroke: #A80036; stroke-width: 1.0;"/>
+        <polygon fill="#A80036" points="683.654,807,674.654,803,678.654,807,674.654,811,683.654,807" style="stroke: #A80036; stroke-width: 1.0;"/>
+        <!--link User to Reader-->
+        <path d="M53.3945,825.87 C57.6091,828.31 61.8937,830.742 66,833 C128.727,867.488 204.51,905.026 241.493,923.086 " fill="none" id="User-Reader" style="stroke: #A80036; stroke-width: 1.0;"/>
+        <polygon fill="none" points="49.7843,831.868,36.1387,815.657,56.9153,819.82,49.7843,831.868" style="stroke: #A80036; stroke-width: 1.0;"/>
+        <!--link Reader to readPerson-->
+        <path d="M288.579,936.352 C325.13,940.159 398.338,947.785 449.668,953.132 " fill="none" id="Reader-readPerson" style="stroke: #A80036; stroke-width: 1.0;"/>
+        <polygon fill="#A80036" points="454.877,953.675,446.3404,948.7631,449.904,953.1564,445.5107,956.72,454.877,953.675" style="stroke: #A80036; stroke-width: 1.0;"/>
+        <!--link Reader to readEntity-->
+        <path d="M288.579,930.143 C327.274,923.532 407.051,909.904 458.461,901.121 " fill="none" id="Reader-readEntity" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="463.655,900.234,454.1102,897.8057,458.7263,901.0754,455.4565,905.6916,463.655,900.234" style="stroke: #A80036; stroke-width: 1.0;"/>
+        <!--link Reader to readProduct-->
+        <path d="M288.579,942.561 C329.726,958.163 417.326,991.3778 467.875,1010.5444 " fill="none" id="Reader-readProduct" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="472.649,1012.3543,465.652,1005.4231,467.9738,1010.5815,462.8155,1012.9034,472.649,1012.3543" style="stroke: #A80036; stroke-width: 1.0;"/>
+        <!--link readPerson to readIndex-->
+        <path d="M546.64,947.994 C577.722,937.87 621.43,920.668 654,896 C680.051,876.269 703.366,846.201 717.101,826.573 " fill="none" id="readPerson-readIndex" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/>
+        <polygon fill="#A80036" points="720.05,822.307,711.6421,827.4361,717.207,826.4201,718.223,831.9849,720.05,822.307" style="stroke: #A80036; stroke-width: 1.0;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="55" x="598" y="892.4951">
+            «include»
+        </text>
+        <!--link readEntity to readIndex-->
+        <path d="M547.629,884.384 C577.518,877.226 619.176,865.824 654,851 C671.671,843.478 690.353,832.705 704.773,823.701 " fill="none" id="readEntity-readIndex" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/>
+        <polygon fill="#A80036" points="709.105,820.97,699.3586,822.3867,704.8756,823.6368,703.6254,829.1538,709.105,820.97" style="stroke: #A80036; stroke-width: 1.0;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="55" x="598" y="847.4951">
+            «include»
+        </text>
+        <!--link readProduct to readIndex-->
+        <path d="M548.368,1014.0127 C580.669,1003.3833 625.181,984.3538 654,954 C689.903,916.184 713.099,858.099 723.559,827.495 " fill="none" id="readProduct-readIndex" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="#A80036" points="725.246,822.468,718.5895,829.7268,723.6546,827.208,726.1734,832.2731,725.246,822.468" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="55" x="598" y="950.4951">«include»</text><!--link User to Writer--><path d="M38.7731,744.675 C57.958,673.388 88.858,558.57 105.5001,496.731 " fill="none" id="User-Writer" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="none" points="45.4163,746.926,33.4592,764.42,31.8973,743.288,45.4163,746.926" style="stroke: #A80036; stroke-width: 1.0;"/><!--link Writer to login--><path d="M122.303,496.61 C128.567,550.836 146.573,644.687 198,705 C208.29,717.068 224.062,725.181 237.608,730.343 " fill="none" id="Writer-login" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="242.483,732.113,235.3893,725.2807,237.7834,730.406,232.6581,732.8001,242.483,732.113" style="stroke: #A80036; stroke-width: 1.0;"/><!--link Writer to createEntity--><path d="M128.135,496.528 C138.81,537.386 160.051,598.701 198,639 C205.321,646.775 214.872,652.985 224.425,657.825 " fill="none" id="Writer-createEntity" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="229.105,660.093,222.7493,652.5694,224.6052,657.9131,219.2615,659.769,229.105,660.093" style="stroke: #A80036; stroke-width: 1.0;"/><!--link Writer to createPerson--><path d="M137.071,456.493 C154.011,458.829 180.292,462.454 204.556,465.801 " fill="none" id="Writer-createPerson" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="209.699,466.51,201.3297,461.3183,204.7459,465.8271,200.237,469.2433,209.699,466.51" style="stroke: #A80036; stroke-width: 1.0;"/><!--link Writer to createProduct--><path d="M137.071,448.267 C157.654,441.737 192.031,430.832 219.821,422.016 " fill="none" id="Writer-createProduct" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="224.928,420.395,215.1399,419.3029,220.1619,421.9065,217.5583,426.9286,224.928,420.395" style="stroke: #A80036; stroke-width: 1.0;"/><!--link Writer to updateEntity--><path d="M137.093,491.264 C150.958,516.804 172.089,550.081 198,573 C206.081,580.148 215.989,586.165 225.646,591.02 " fill="none" id="Writer-updateEntity" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="230.357,593.311,224.0109,585.7792,225.86,591.1254,220.5139,592.9744,230.357,593.311" style="stroke: #A80036; stroke-width: 1.0;"/><!--link Writer to updatePerson--><path d="M137.091,467.101 C152.836,478.266 176.448,494.451 198,507 C208.08,512.87 219.34,518.739 229.664,523.865 " fill="none" id="Writer-updatePerson" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="234.334,526.165,228.0284,518.5993,229.8488,523.9553,224.4928,525.7756,234.334,526.165" style="stroke: #A80036; stroke-width: 1.0;"/><!--link Writer to updateProduct--><path d="M137.244,432.373 C152.34,415.364 174.97,391.811 198,375 C207.028,368.41 217.513,362.383 227.432,357.294 " fill="none" id="Writer-updateProduct" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="231.942,355.023,222.1046,355.4979,227.4762,357.2716,225.7024,362.6432,231.942,355.023" style="stroke: #A80036; stroke-width: 1.0;"/><!--link Writer to deleteEntity--><path d="M133.811,411.23 C146.665,379.24 167.963,336.164 198,307 C205.741,299.484 215.531,293.342 225.185,288.483 " fill="none" id="Writer-deleteEntity" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="229.904,286.2,220.0603,286.5177,225.4028,288.377,223.5435,293.7196,229.904,286.2" style="stroke: #A80036; stroke-width: 1.0;"/><!--link Writer to deletePerson--><path d="M125.297,411.18 C134.166,364.377 154.414,289.59 198,241 C204.64,233.597 213.322,227.65 222.196,222.956 " fill="none" id="Writer-deletePerson" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="227.135,220.475,217.2972,220.9411,222.6672,222.7196,220.8886,228.0896,227.135,220.475" style="stroke: #A80036; stroke-width: 1.0;"/><!--link Writer to deleteProduct--><path d="M120.434,411.151 C124.583,351.611 140.197,243.473 198,175 C204.275,167.566 212.635,161.639 221.29,156.979 " fill="none" id="Writer-deleteProduct" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="226.118,154.518,216.2832,155.0431,221.6637,156.7894,219.9174,162.17,226.118,154.518" style="stroke: #A80036; stroke-width: 1.0;"/><!--link Writer to logout--><path d="M123.863,411.434 C133.973,329.663 159.565,154.655 198,109 C207.105,98.185 220.624,90.562 233.059,85.389 " fill="none" id="Writer-logout" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="237.942,83.456,228.1016,83.0481,233.2928,85.2957,231.0451,90.4869,237.942,83.456" style="stroke: #A80036; stroke-width: 1.0;"/><!--link createEntity to editPerson--><path d="M321.061,672 C359.867,672 411.639,672 450.535,672 " fill="none" id="createEntity-editPerson" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="#A80036" points="455.694,672,446.694,668,450.694,672,446.694,676,455.694,672" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="55" x="363" y="668.4951">«include»</text><!--link createPerson to editEntity--><path d="M307.805,485.496 C352.548,497.801 422.981,517.17 466.726,529.2 " fill="none" id="createPerson-editEntity" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="#A80036" points="471.662,530.557,464.045,524.3135,466.841,529.231,461.9235,532.027,471.662,530.557" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="55" x="363" y="497.4951">«include»</text><!--link createProduct to editProduct--><path d="M330.631,408 C367.154,408 412.441,408 447.845,408 " fill="none" id="createProduct-editProduct" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="#A80036" points="452.994,408,443.994,404,447.994,408,443.994,412,452.994,408" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="55" x="363" y="404.4951">«include»</text><!--link updateEntity to editPerson--><path d="M306.441,617.121 C350.048,629.113 419.164,648.12 463.54,660.323 " fill="none" id="updateEntity-editPerson" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="#A80036" points="468.557,661.703,460.9396,655.46,463.7359,660.3774,458.8186,663.1737,468.557,661.703" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="55" x="363" y="629.4951">«include»</text><!--link updatePerson to editEntity--><path d="M330.631,540 C370.595,540 421.051,540 457.572,540 " fill="none" id="updatePerson-editEntity" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="#A80036" points="462.856,540,453.856,536,457.856,540,453.856,544,462.856,540" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="55" x="363" y="536.4951">«include»</text><!--link updateProduct to editProduct--><path d="M309.184,353.056 C352.587,365.172 419.119,383.746 462.598,395.884 " fill="none" id="updateProduct-editProduct" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="#A80036" points="467.52,397.258,459.9269,390.9855,462.7041,395.9137,457.7759,398.6909,467.52,397.258" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="55" x="363" y="365.4951">«include»</text><!--link editPerson to readIndex--><path d="M530.922,685.939 C572.264,711.079 659.101,763.886 703.15,790.672 " fill="none" id="editPerson-readIndex" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="#A80036" points="707.534,793.338,701.924,785.2431,703.2624,790.7393,697.7661,792.0777,707.534,793.338" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="55" x="598" y="723.4951">«include»</text><!--link editEntity to readIndex--><path d="M522.278,554.588 C549.118,582.255 608.485,644.636 654,701 C677.508,730.112 702.334,765.807 716.981,787.456 " fill="none" id="editEntity-readIndex" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="#A80036" points="719.948,791.856,718.2308,782.158,717.1518,787.711,711.5988,786.6319,719.948,791.856" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="55" x="598" y="633.4951">«include»</text><!--link editProduct to readIndex--><path d="M521.25,422.956 C537.827,441.94 566.739,475.961 589,507 C620.767,551.294 629.594,562.262 654,611 C684.917,672.741 711.646,750.276 723.491,786.538 " fill="none" id="editProduct-readIndex" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="#A80036" points="725.129,791.582,726.1538,781.7866,723.5848,786.8264,718.5449,784.2574,725.129,791.582" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="55" x="598" y="515.4951">«include»</text><!--
+@startuml
+
+left to right direction
+
+actor User
+usecase readIndex
+
+package readers {
+actor Reader
+usecase readEntity
+usecase readPerson
+usecase readProduct
+}
+
+package writers {
+actor Writer
+usecase login
+usecase createEntity
+usecase createPerson
+usecase createProduct
+usecase updateEntity
+usecase updatePerson
+usecase updateProduct
+usecase deleteEntity
+usecase deletePerson
+usecase deleteProduct
+usecase editEntity
+usecase editPerson
+usecase editProduct
+usecase logout
+}
+
+User - -> readIndex
+
+User <|-down- Reader
+Reader - -> readPerson
+Reader - -> readEntity
+Reader - -> readProduct
+
+readPerson ..> readIndex : <<include>>
+readEntity ..> readIndex : <<include>>
+readProduct ..> readIndex : <<include>>
+
+User <|-down- Writer
+Writer - -> login
+Writer - -> createEntity
+Writer - -> updateEntity
+Writer - -> deleteEntity
+Writer - -> createPerson
+Writer - -> updatePerson
+Writer - -> deletePerson
+Writer - -> createProduct
+Writer - -> updateProduct
+Writer - -> deleteProduct
+Writer - -> logout
+
+createEntity ..> editEntity : <<include>>
+updateEntity ..> editEntity : <<include>>
+createPerson ..> editPerson : <<include>>
+updatePerson ..> editPerson : <<include>>
+createProduct ..> editProduct : <<include>>
+updateProduct ..> editProduct : <<include>>
+
+editPerson ..> readIndex : <<include>>
+editEntity ..> readIndex : <<include>>
+editProduct ..> readIndex : <<include>>
+@enduml
+
+PlantUML version 1.2019.05(Sat Apr 20 18:45:36 CEST 2019)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 1.8.0_222-b10
+Operating System: Windows 10
+OS Version: 10.0
+Default Encoding: windows-1252
+Language: es
+Country: ES
+--></g></svg>
