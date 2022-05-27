@@ -17,7 +17,7 @@ $settings['public'] = $settings['root'] . '/public';
 // Error Handling Middleware settings
 $settings['error_handler_middleware'] = [
     // Should be set to false in production
-    'display_error_details' => true,
+    'display_error_details' => false,
     // Parameter is passed to the default ErrorHandler
     // View in rendered output by enabling the "displayErrorDetails" setting.
     // For the console and unit tests it should be disable too

@@ -13,6 +13,7 @@ use Doctrine\ORM\EntityManager;
 use Fig\Http\Message\StatusCodeInterface as StatusCode;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Http\Response;
+use Slim\Routing\RouteContext;
 use TDW\ACiencia\Auth\JwtAuth;
 use TDW\ACiencia\Entity\Role;
 use TDW\ACiencia\Entity\User;
@@ -54,8 +55,12 @@ class LoginController
                 ->findOneBy([ 'username' => $req_data['username'] ]);
         }
 
-        if (!$user?->validatePassword($req_data['password'])) {    // 404
+        if (!$user?->validatePassword($req_data['password'])) {    // 404 instead of 401
             return Error::error($response, StatusCode::STATUS_NOT_FOUND);
+        }
+
+        if(!$user->isActive()) { // 403 - User not active
+            return Error::error($response, StatusCode::STATUS_FORBIDDEN);
         }
 
         if (!array_key_exists('scope', $req_data)) {
@@ -79,5 +84,28 @@ class LoginController
             ])
             ->withHeader('Cache-Control', 'no-store')   // Prevención de almacenamiento en caché
             ->withHeader('Authorization', 'Bearer ' . $token);
+    }
+
+    /**
+     * Summary: Provides the list of HTTP supported methods
+     *
+     * @param  Request $request
+     * @param  Response $response
+     *
+     * @return Response
+     */
+    public function options(Request $request, Response $response): Response
+    {
+        $routeContext = RouteContext::fromRequest($request);
+        $routingResults = $routeContext->getRoutingResults();
+        $methods = $routingResults->getAllowedMethods();
+
+        return $response
+            ->withStatus(204)
+            ->withAddedHeader('Cache-Control', 'private')
+            ->withAddedHeader(
+                'Allow',
+                implode(', ', $methods)
+            );
     }
 }

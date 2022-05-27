@@ -9,6 +9,7 @@
 
 namespace TDW\ACiencia\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use JsonSerializable;
 use UnexpectedValueException;
@@ -73,11 +74,41 @@ class User implements JsonSerializable
     protected string $password_hash;
 
     /**
+     * @ORM\Column(
+     *     name="birthdate",
+     *     type="datetime",
+     *     nullable=true
+     *     )
+     */
+    protected DateTime | null $birthDate = null;
+
+    /**
+     * @ORM\Column(
+     *     name="name",
+     *     type="string",
+     *     length=80,
+     *     nullable=true
+     *     )
+     */
+    protected string $name;
+
+    /**
+     * @ORM\Column(
+     *     name     = "active",
+     *     type     = "boolean",
+     *     nullable = false
+     *     )
+     */
+    protected bool $active;
+
+
+    /**
      * @ORM\Embedded(
      *     class="TDW\ACiencia\Entity\Role"
      * )
      */
     protected Role $role;
+
 
     /**
      * User constructor.
@@ -86,19 +117,28 @@ class User implements JsonSerializable
      * @param string $email email
      * @param string $password password
      * @param string $role Role::ROLE_READER | Role::ROLE_WRITER
-     *
+     * @param DateTime|null $birthDate
+     * @param string $name
+     * @param bool $active
      * @throws UnexpectedValueException
      */
     public function __construct(
-        string $username = '',
-        string $email = '',
-        string $password = '',
-        string $role = Role::ROLE_READER
-    ) {
-        $this->id       = 0;
+        string    $username = '',
+        string    $email = '',
+        string    $password = '',
+        string    $role = Role::ROLE_READER,
+        ?DateTime $birthDate = null,
+        string    $name = '',
+        bool      $active = true
+    )
+    {
+        $this->id = 0;
         $this->username = $username;
-        $this->email    = $email;
+        $this->email = $email;
         $this->setPassword($password);
+        $this->birthDate = $birthDate;
+        $this->name = $name;
+        $this->active = $active;
         try {
             $this->setRole($role);
         } catch (UnexpectedValueException) {
@@ -163,8 +203,8 @@ class User implements JsonSerializable
 
     /**
      * @param string $role [ Role::ROLE_READER | Role::ROLE_WRITER ]
-     * @throws UnexpectedValueException
      * @return void
+     * @throws UnexpectedValueException
      */
     public function setRole(string $role): void
     {
@@ -218,6 +258,57 @@ class User implements JsonSerializable
     }
 
     /**
+     * @return boolean
+     */
+    public function isActive(): bool
+    {
+        return $this->active;
+    }
+
+    /**
+     * @param boolean $active active
+     * @return void
+     */
+    public function setActive(bool $active): void
+    {
+        $this->active = $active;
+    }
+
+    /**
+     * @return string
+     */
+    final public function getName(): string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     * @return void
+     */
+    final public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return DateTime|null
+     */
+    final public function getBirthDate(): ?DateTime
+    {
+        return $this->birthDate;
+    }
+
+    /**
+     * @param DateTime|null $birthDate
+     * @return void
+     */
+    final public function setBirthDate(?DateTime $birthDate): void
+    {
+        $this->birthDate = $birthDate;
+    }
+
+    /**
      * The __toString method allows a class to decide how it will react when it is converted to a string.
      *
      * @return string
@@ -225,13 +316,18 @@ class User implements JsonSerializable
      */
     public function __toString(): string
     {
+        $birthdate = $this->getBirthDate()?->format('Y-m-d') ?? 'null';
+
         return
             sprintf(
-                '[%s: (id=%04d, username="%s", email="%s", role="%s")]',
+                '[%s: (id=%04d, username="%s", email="%s", active="%s", name="%s", birthDate="%s",role="%s")]',
                 basename(self::class),
                 $this->getId(),
                 $this->getUsername(),
                 $this->getEmail(),
+                var_export($this->isActive(), true),
+                $this->getName(),
+                $birthdate,
                 $this->role
             );
     }
@@ -250,6 +346,9 @@ class User implements JsonSerializable
                 'id' => $this->getId(),
                 'username' => $this->getUsername(),
                 'email' => $this->getEmail(),
+                'active' => $this->isActive(),
+                'birthDate' => $this->getBirthDate()?->format('Y-m-d') ?? null,
+                'name' => $this->getName(),
                 'role' => $this->role->__toString(),
             ]
         ];

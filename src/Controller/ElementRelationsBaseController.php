@@ -35,6 +35,7 @@ abstract class ElementRelationsBaseController extends ElementBaseController
      */
     public function getElements(Response $response, array $args, array $elementData): Response
     {
+
         /** @var Element|null $element */
         $element = $this->entityManager
             ->getRepository(static::getEntityClassName())

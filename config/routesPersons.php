@@ -28,15 +28,15 @@ return function (App $app) {
     $app->get(
         $_ENV['RUTA_API'] . PersonController::PATH_PERSONS,
         PersonController::class . ':cget'
-    )->setName('readPersons');
-    //    ->add(JwtMiddleware::class);
+    )->setName('readPersons')
+        ->add(JwtMiddleware::class);
 
     // GET: Returns a person based on a single ID
     $app->get(
         $_ENV['RUTA_API'] . PersonController::PATH_PERSONS . $REGEX_PERSON_ID,
         PersonController::class . ':get'
-    )->setName('readPerson');
-    //    ->add(JwtMiddleware::class);
+    )->setName('readPerson')
+        ->add(JwtMiddleware::class);
 
     // GET: Returns status code 204 if personname exists
     $app->get(
@@ -77,39 +77,60 @@ return function (App $app) {
     $app->get(
         $_ENV['RUTA_API'] . PersonController::PATH_PERSONS . $REGEX_PERSON_ID . '/entities',
         PersonRelationsController::class . ':getEntities'
-    )->setName('readPersonEntities');
-    //    ->add(JwtMiddleware::class);
+    )->setName('readPersonEntities')
+        ->add(JwtMiddleware::class);
 
     // PUT /persons/{personId}/entities/add/{stuffId}
     $app->put(
         $_ENV['RUTA_API'] . PersonController::PATH_PERSONS . $REGEX_PERSON_ID
-            . '/entities/add' . $REGEX_STUFF_ID,
+        . '/entities/add' . $REGEX_STUFF_ID,
         PersonRelationsController::class . ':operationEntity'
     )->setName('tdw_persons_add_entity')
         ->add(JwtMiddleware::class);
 
+    // OPTIONS /persons/{personId}/entities/add/{stuffId}
+    $app->options(
+        $_ENV['RUTA_API'] . PersonController::PATH_PERSONS . $REGEX_PERSON_ID
+        . '/entities/add' . $REGEX_STUFF_ID,
+        PersonRelationsController::class . ':options'
+    )->setName('optionsPersonAddEntity');
+
     // PUT /persons/{personId}/entities/rem/{stuffId}
     $app->put(
         $_ENV['RUTA_API'] . PersonController::PATH_PERSONS . $REGEX_PERSON_ID
-            . '/entities/rem' . $REGEX_STUFF_ID,
+        . '/entities/rem' . $REGEX_STUFF_ID,
         PersonRelationsController::class . ':operationEntity'
     )->setName('tdw_persons_rem_entity')
         ->add(JwtMiddleware::class);
+
+    // OPTIONS /persons/{personId}/entities/rem/{stuffId}
+    $app->options(
+        $_ENV['RUTA_API'] . PersonController::PATH_PERSONS . $REGEX_PERSON_ID
+        . '/entities/rem' . $REGEX_STUFF_ID,
+        PersonRelationsController::class . ':options'
+    )->setName('optionsPersonRemEntity');
 
     // GET /persons/{personId}/products
     $app->get(
         $_ENV['RUTA_API'] . PersonController::PATH_PERSONS . $REGEX_PERSON_ID . '/products',
         PersonRelationsController::class . ':getProducts'
-    )->setName('readPersonProducts');
-    //    ->add(JwtMiddleware::class);
+    )->setName('readPersonProducts')
+        ->add(JwtMiddleware::class);
 
     // PUT /persons/{personId}/products/add/{stuffId}
     $app->put(
         $_ENV['RUTA_API'] . PersonController::PATH_PERSONS . $REGEX_PERSON_ID
-            . '/products/add' . $REGEX_STUFF_ID,
+        . '/products/add' . $REGEX_STUFF_ID,
         PersonRelationsController::class . ':operationProduct'
     )->setName('tdw_persons_add_product')
         ->add(JwtMiddleware::class);
+
+    // OPTIONS /persons/{personId}/products/add/{stuffId}
+    $app->options(
+        $_ENV['RUTA_API'] . PersonController::PATH_PERSONS . $REGEX_PERSON_ID
+        . '/products/add' . $REGEX_STUFF_ID,
+        PersonRelationsController::class . ':options'
+    )->setName('optionsPersonAddProduct');
 
     // PUT /persons/{personId}/products/rem/{stuffId}
     $app->put(
@@ -118,4 +139,11 @@ return function (App $app) {
         PersonRelationsController::class . ':operationProduct'
     )->setName('tdw_persons_rem_product')
         ->add(JwtMiddleware::class);
+
+    // OPTIONS /persons/{personId}/products/rem/{stuffId}
+    $app->options(
+        $_ENV['RUTA_API'] . PersonController::PATH_PERSONS . $REGEX_PERSON_ID
+        . '/products/rem' . $REGEX_STUFF_ID,
+        PersonRelationsController::class . ':options'
+    )->setName('optionsPersonRemProduct');
 };

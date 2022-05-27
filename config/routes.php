@@ -18,6 +18,7 @@ return function (App $app) {
         '/api-docs/index.html'
     )->setName('tdw_home_redirect');
 
+
     /**
      * ############################################################
      * routes /access_token
@@ -28,4 +29,16 @@ return function (App $app) {
         $_ENV['RUTA_LOGIN'],
         LoginController::class . ':post'
     )->setName('tdw_post_login');
+
+    /**
+     * ############################################################
+     * routes /access_token
+     * OPTIONS /access_token
+     * ############################################################
+     */
+    $app->options(
+        $_ENV['RUTA_LOGIN'],
+        LoginController::class . ':options'
+    )->setName('tdw_options_login');
+
 };

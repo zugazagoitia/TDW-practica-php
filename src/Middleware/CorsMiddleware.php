@@ -43,6 +43,9 @@ final class CorsMiddleware implements MiddlewareInterface
         // Allow Ajax CORS requests with Authorization header
         $response = $response->withHeader('Access-Control-Allow-Credentials', 'true');
 
+        // Allow retrieving etag
+        $response = $response->withHeader('Access-Control-Expose-Headers', 'ETag');
+
         return $response;
     }
 }

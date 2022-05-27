@@ -42,6 +42,12 @@ return function (App $app) {
         UserController::class . ':getUsername'
     )->setName('tdw_users_get_username');
 
+    // OPTIONS: Provides the list of HTTP supported methods
+    $app->options(
+        $_ENV['RUTA_API'] . UserController::PATH_USERS . '/username' . $REGEX_USERNAME,
+        UserController::class . ':options'
+    )->setName('tdw_users_exists_options');
+
     // DELETE: Deletes a user
     $app->delete(
         $_ENV['RUTA_API'] . UserController::PATH_USERS . $REGEX_USER_ID,
@@ -61,6 +67,18 @@ return function (App $app) {
         UserController::class . ':post'
     )->setName('tdw_users_post')
         ->add(JwtMiddleware::class);
+
+    // POST: Registers a new user
+    $app->post(
+        $_ENV['RUTA_API'] . UserController::PATH_USERS . '/register',
+        UserController::class . ':register'
+    )->setName('tdw_users_register_post');
+
+    // OPTIONS: Provides the list of HTTP supported methods
+    $app->options(
+        $_ENV['RUTA_API'] . UserController::PATH_USERS . '/register',
+        UserController::class . ':options'
+    )->setName('tdw_users_register_options');
 
     // PUT: Updates a user
     $app->put(

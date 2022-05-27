@@ -20,9 +20,9 @@ services:
             - .docker/data/db:/var/lib/mysql:rw
         environment:
             MYSQL_ROOT_PASSWORD: root
-            MYSQL_DATABASE: ${DATABASE_NAME:?"Variable MYSQL_DATABASE no definida"}
-#            MYSQL_USER: ${DATABASE_USER:?"Variable MYSQL_USER no definida"}
-            MYSQL_PASSWORD: ${DATABASE_PASSWD:?"Variable MYSQL_PASSWORD no definida"}
+            MYSQL_DATABASE: phpDb
+            MYSQL_USER: user
+            MYSQL_PASSWORD: password
         restart: on-failure
         ports:
             - "3306:3306"
@@ -32,11 +32,13 @@ services:
         container_name: aos_php
         volumes:
             - .:/home/wwwroot/aos
+            - /home/wwwroot/aos/vendor/
+            - ./tmp:/home/wwwroot/tmp:rw
         environment:
-            MYSQL_TEST_DATABASE: ${DATABASE_TEST_NAME?"Variable MYSQL_TEST_DATABASE no definida"}
+            MYSQL_TEST_DATABASE: php-test
             DOCKER: 1
         ports:
-            - "9000:9000"
+            - "9123:9000"
             # - "9003:9003"
         depends_on:
             - mysql

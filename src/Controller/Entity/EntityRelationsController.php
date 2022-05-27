@@ -56,7 +56,14 @@ final class EntityRelationsController extends ElementRelationsBaseController
      */
     public function getPersons(Request $request, Response $response, array $args): Response
     {
-        // @TODO
+
+        $elementData = [
+            'getter' => 'getPersons',
+            'stuff' => PersonController::getEntitiesTag(),
+        ];
+
+        return $this->getElements($response, $args, $elementData);
+
     }
 
     /**
@@ -72,7 +79,13 @@ final class EntityRelationsController extends ElementRelationsBaseController
      */
     public function operationPerson(Request $request, Response $response, array $args): Response
     {
-        // @TODO
+        $elementData = [
+            'stuffEName' => PersonController::getEntityClassName(),
+            'stuffId' => $args['stuffId'],
+            'getter' => 'getPersons',
+            'stuff' => PersonController::getEntitiesTag(),
+        ];
+        return $this->operationStuff($request, $response, $args, $elementData);
     }
 
     /**
@@ -86,8 +99,11 @@ final class EntityRelationsController extends ElementRelationsBaseController
      */
     public function getProducts(Request $request, Response $response, array $args): Response
     {
-        // @TODO
-    }
+        $elementData = [
+            'getter' => 'getProducts',
+            'stuff' => ProductController::getEntitiesTag(),
+        ];
+        return $this->getElements($response, $args, $elementData);    }
 
     /**
      * PUT /entities/{entityId}/products/add/{stuffId}
@@ -101,6 +117,12 @@ final class EntityRelationsController extends ElementRelationsBaseController
      */
     public function operationProduct(Request $request, Response $response, array $args): Response
     {
-        // @TODO
+        $elementData = [
+            'stuffEName' => ProductController::getEntityClassName(),
+            'stuffId' => $args['stuffId'],
+            'getter' => 'getProducts',
+            'stuff' => ProductController::getEntitiesTag(),
+        ];
+        return $this->operationStuff($request, $response, $args, $elementData);
     }
 }

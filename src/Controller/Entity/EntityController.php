@@ -57,6 +57,6 @@ class EntityController extends ElementBaseController
      */
     public function getEntityname(Request $request, Response $response, array $args): Response
     {
-        // @TODO
+        return $this->getElementByName($response, $args['entityname']);
     }
 }

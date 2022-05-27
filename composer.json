@@ -63,7 +63,8 @@
             "TDW\\ACiencia\\Utility\\Install::preUpdateSchema",
             "TDW\\ACiencia\\Utility\\Install::postInstall"
         ],
-        "start": "php -S 127.0.0.1:8000 -t public",
+        "start": ["Composer\\Config::disableProcessTimeout",
+            "php -S 127.0.0.1:8000 -t public"],
         "test": "bin/phpunit",
         "infection": ".\\bin\\infection --ansi --coverage=\"var\\coverage\" --threads=20 --only-covered"
     },

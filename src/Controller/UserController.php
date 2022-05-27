@@ -9,6 +9,7 @@
 
 namespace TDW\ACiencia\Controller;
 
+use DateTime;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\ORMException;
@@ -26,7 +27,7 @@ use Throwable;
  */
 class UserController
 {
-    /** @var string ruta api gestión usuarios  */
+    /** @var string ruta api gestión usuarios */
     public const PATH_USERS = '/users';
 
     protected EntityManager $entityManager;
@@ -47,6 +48,12 @@ class UserController
      */
     public function cget(Request $request, Response $response): Response
     {
+        $is_writer = $this->checkWriterScope($request);
+        if (!$is_writer) { // 403 => 404 por seguridad
+            return Error::error($response, StatusCode::STATUS_FORBIDDEN);
+        }
+
+
         $users = $this->entityManager
             ->getRepository(User::class)
             ->findAll();
@@ -60,13 +67,13 @@ class UserController
         // Caching with ETag
         $etag = md5(json_encode($users));
         if ($request->hasHeader('If-None-Match') && in_array($etag, $request->getHeader('If-None-Match'))) {
-                return $response->withStatus(StatusCode::STATUS_NOT_MODIFIED); // 304
+            return $response->withStatus(StatusCode::STATUS_NOT_MODIFIED); // 304
         }
 
         return $response
             ->withAddedHeader('ETag', $etag)
             ->withAddedHeader('Cache-Control', 'private')
-            ->withJson([ 'users' => $users ]);
+            ->withJson(['users' => $users]);
     }
 
     /**
@@ -80,6 +87,13 @@ class UserController
      */
     public function get(Request $request, Response $response, array $args): Response
     {
+        $is_writer = $this->checkWriterScope($request);
+        if (!$is_writer) { // 403 => 404 por seguridad
+            if (!$this->checkUserIsSelf($request, $args['userId'])) { // 403 => 404 por seguridad
+                return Error::error($response, StatusCode::STATUS_NOT_FOUND);
+            }
+        }
+
         $user = $this->entityManager->getRepository(User::class)->find($args['userId']);
         if (null === $user) {
             return Error::error($response, StatusCode::STATUS_NOT_FOUND);
@@ -110,7 +124,7 @@ class UserController
     {
         $usuario = $this->entityManager
             ->getRepository(User::class)
-            ->findOneBy([ 'username' => $args['username'] ]);
+            ->findOneBy(['username' => $args['username']]);
 
         return (null === $usuario)
             ? Error::error($response, StatusCode::STATUS_NOT_FOUND)     // 404
@@ -149,8 +163,8 @@ class UserController
     /**
      * Summary: Provides the list of HTTP supported methods
      *
-     * @param  Request $request
-     * @param  Response $response
+     * @param Request $request
+     * @param Response $response
      *
      * @return Response
      */
@@ -201,6 +215,9 @@ class UserController
             return Error::error($response, StatusCode::STATUS_BAD_REQUEST);
         }
 
+
+
+
         // 201
         try {
             $user = new User(
@@ -212,6 +229,17 @@ class UserController
         } catch (Throwable) {    // 400 BAD REQUEST: Unexpected role
             return Error::error($response, StatusCode::STATUS_BAD_REQUEST);
         }
+
+        if (isset($req_data['birthDate'])) {
+            ($date = DateTime::createFromFormat('!Y-m-d', $req_data['birthDate'])) ? $user->setBirthDate($date) : null;
+        }
+        if (isset($req_data['name'])) {
+            $user->setName($req_data['name']);
+        }
+        if (isset($req_data['active'])) {
+            $user->setActive(filter_var($req_data['active']), FILTER_VALIDATE_BOOLEAN);
+        }
+
         $this->entityManager->persist($user);
         $this->entityManager->flush();
 
@@ -222,6 +250,58 @@ class UserController
             )
             ->withJson($user, StatusCode::STATUS_CREATED);
     }
+
+
+    /**
+     * Summary: Registers a new user with role 'reader'
+     *
+     * @param Request $request
+     * @param Response $response
+     * @return Response
+     *
+     * @throws ORMException
+     */
+    public function register(Request $request, Response $response): Response
+    {
+        $req_data
+            = $request->getParsedBody() ?? json_decode($request->getBody(), true) ?? [];
+
+        if (!isset($req_data['username'], $req_data['email'], $req_data['password'])) { // 422 - Faltan datos
+            return Error::error($response, StatusCode::STATUS_UNPROCESSABLE_ENTITY);
+        }
+
+        // hay datos -> procesarlos
+        $criteria = new Criteria();
+        $criteria
+            ->where($criteria::expr()->eq('username', $req_data['username']))
+            ->orWhere($criteria::expr()->eq('email', $req_data['email']));
+        // STATUS_BAD_REQUEST 400: username or e-mail already exists
+        if ($this->entityManager->getRepository(User::class)->matching($criteria)->count()) {
+            return Error::error($response, StatusCode::STATUS_BAD_REQUEST);
+        }
+
+        // 201
+        $user = new User(
+            $req_data['username'],
+            $req_data['email'],
+            $req_data['password'],
+            Role::ROLE_READER,
+            ($date = DateTime::createFromFormat('!Y-m-d', $req_data['birthDate'])) ? $date : null,
+            $req_data['name'] ?? null,
+            false
+        );
+
+        $this->entityManager->persist($user);
+        $this->entityManager->flush();
+
+        return $response
+            ->withAddedHeader(
+                'Location',
+                $request->getUri() . '/' . $user->getId()
+            )
+            ->withJson($user, StatusCode::STATUS_CREATED);
+    }
+
 
     /**
      * Summary: Updates a user
@@ -235,8 +315,11 @@ class UserController
      */
     public function put(Request $request, Response $response, array $args): Response
     {
-        if (!$this->checkWriterScope($request)) { // 403 => 404 por seguridad
-            return Error::error($response, StatusCode::STATUS_NOT_FOUND);
+        $is_writer = $this->checkWriterScope($request);
+        if (!$is_writer) { // 403 => 404 por seguridad
+            if (!$this->checkUserIsSelf($request, $args['userId'])) { // 403 => 404 por seguridad
+                return Error::error($response, StatusCode::STATUS_NOT_FOUND);
+            }
         }
 
         $req_data
@@ -255,6 +338,10 @@ class UserController
         }
 
         if (isset($req_data['username'])) {
+            if (!$is_writer) {
+                // 403 - Only writers can change username
+                return Error::error($response, StatusCode::STATUS_FORBIDDEN);
+            }
             $usuarioId = $this->findIdBy('username', $req_data['username']);
             if ($usuarioId && intval($args['userId']) !== $usuarioId) {
                 // 400 BAD_REQUEST: username already exists
@@ -276,9 +363,23 @@ class UserController
         if (isset($req_data['password'])) {
             $user->setPassword($req_data['password']);
         }
+        if (isset($req_data['birthDate'])) {
+            ($date = DateTime::createFromFormat('!Y-m-d', $req_data['birthDate'])) ? $user->setBirthDate($date) : null;
+        }
+        if (isset($req_data['name'])) {
+            $user->setName($req_data['name']);
+        }
+        if (isset($req_data['active'])) {
+            if (!$is_writer) {
+                // 403 - Only writers can change active
+                return Error::error($response, StatusCode::STATUS_FORBIDDEN);
+            }
+            $user->setActive(filter_var($req_data['active']), FILTER_VALIDATE_BOOLEAN);
+        }
 
         // role
         if (isset($req_data['role'])) {
+
             try {
                 $user->setRole($req_data['role']);
             } catch (Throwable) {    // 400 BAD_REQUEST: unexpected role
@@ -303,7 +404,7 @@ class UserController
      */
     private function findIdBy(string $attr, string $value): int
     {
-        $user = $this->entityManager->getRepository(User::class)->findOneBy([ $attr => $value ]);
+        $user = $this->entityManager->getRepository(User::class)->findOneBy([$attr => $value]);
         return $user?->getId() ?? 0;
     }
 
@@ -315,5 +416,17 @@ class UserController
     {
         $scopes = $request->getAttribute('token')->claims()->get('scopes', null);
         return in_array(Role::ROLE_WRITER, $scopes, true);
+    }
+
+    /**
+     * Checks if the user is the same as the one in the token
+     * @param Request $request
+     * @param int $userId
+     * @return bool
+     */
+    protected function checkUserIsSelf(Request $request, int $userId): bool
+    {
+        $tokenUserId = $request->getAttribute('token')->claims()->get('uid', null);
+        return $tokenUserId === $userId;
     }
 }
