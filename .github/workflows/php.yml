@@ -2,7 +2,7 @@ name: PHPUnit Tests
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, dev ]
   pull_request:
     branches: [ master ]
 
@@ -53,4 +53,4 @@ jobs:
         run: |
           echo "${{ secrets.PUBLICA }}" >| ./config/public.pem;
           echo "${{ secrets.PRIVADA }}" >| ./config/private.pem;
-          bin/phpunit -dxdebug.mode=coverage
+          sudo bin/phpunit -dxdebug.mode=coverage
