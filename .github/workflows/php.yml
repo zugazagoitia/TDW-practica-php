@@ -53,4 +53,5 @@ jobs:
         run: |
           echo "${{ secrets.PUBLICA }}" >| ./config/public.pem;
           echo "${{ secrets.PRIVADA }}" >| ./config/private.pem;
-          sudo -E bin/phpunit -dxdebug.mode=coverage
+          sudo -E $(pwd)/bin/phpunit -dxdebug.mode=coverage
+          
