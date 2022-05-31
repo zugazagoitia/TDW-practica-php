@@ -216,8 +216,6 @@ class UserController
         }
 
 
-
-
         // 201
         try {
             $user = new User(
@@ -239,6 +237,8 @@ class UserController
         if (isset($req_data['active'])) {
             $user->setActive(filter_var($req_data['active']), FILTER_VALIDATE_BOOLEAN);
         }
+
+        $user->setRegisterTime(new DateTime());
 
         $this->entityManager->persist($user);
         $this->entityManager->flush();
@@ -290,6 +290,7 @@ class UserController
             $req_data['name'] ?? null,
             false
         );
+        $user->setRegisterTime(new DateTime());
 
         $this->entityManager->persist($user);
         $this->entityManager->flush();

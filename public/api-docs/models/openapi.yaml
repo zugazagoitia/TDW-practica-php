@@ -6,7 +6,7 @@ info:
   license:
     name: MIT
     url: 'https://opensource.org/licenses/MIT'
-  version: 1.3.0
+  version: 2.0
   contact:
     name: Máster Universitario en Ingeniería Web
     url: 'http://miw.etsisi.upm.es/'
@@ -1202,6 +1202,10 @@ components:
           description: User Id
           type: integer
           format: int64
+        registerTime:
+          description: Date when the user was registered
+          type: string
+          format: date
         username:
           description: Username
           type: string

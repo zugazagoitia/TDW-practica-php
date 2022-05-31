@@ -80,7 +80,16 @@ class User implements JsonSerializable
      *     nullable=true
      *     )
      */
-    protected DateTime | null $birthDate = null;
+    protected DateTime|null $birthDate = null;
+
+    /**
+     * @ORM\Column(
+     *     name="registerTime",
+     *     type="datetime",
+     *     nullable=true
+     *     )
+     */
+    protected DateTime|null $registerTime = null;
 
     /**
      * @ORM\Column(
@@ -129,7 +138,7 @@ class User implements JsonSerializable
         string    $role = Role::ROLE_READER,
         ?DateTime $birthDate = null,
         string    $name = '',
-        bool      $active = true
+        bool      $active = true,
     )
     {
         $this->id = 0;
@@ -139,12 +148,15 @@ class User implements JsonSerializable
         $this->birthDate = $birthDate;
         $this->name = $name;
         $this->active = $active;
+        $this->registerTime = new DateTime();
         try {
             $this->setRole($role);
         } catch (UnexpectedValueException) {
             throw new UnexpectedValueException('Unexpected Role');
         }
     }
+
+
 
     /**
      * @return int
@@ -309,6 +321,26 @@ class User implements JsonSerializable
     }
 
     /**
+     * @return DateTime|null
+     */
+    public function getRegisterTime(): ?DateTime
+    {
+        return $this->registerTime;
+    }
+
+    /**
+     * @param DateTime|null $registerTime
+     */
+    public function setRegisterTime(?DateTime $registerTime): void
+    {
+        $this->registerTime = $registerTime;
+    }
+
+
+
+
+
+    /**
      * The __toString method allows a class to decide how it will react when it is converted to a string.
      *
      * @return string
@@ -318,9 +350,11 @@ class User implements JsonSerializable
     {
         $birthdate = $this->getBirthDate()?->format('Y-m-d') ?? 'null';
 
+        $registerTime = $this->getRegisterTime()?->format('Y-m-d') ?? 'null';
+
         return
             sprintf(
-                '[%s: (id=%04d, username="%s", email="%s", active="%s", name="%s", birthDate="%s",role="%s")]',
+                '[%s: (id=%04d, username="%s", email="%s", active="%s", name="%s", birthDate="%s",role="%s",registerTime="%s")]',
                 basename(self::class),
                 $this->getId(),
                 $this->getUsername(),
@@ -328,7 +362,8 @@ class User implements JsonSerializable
                 var_export($this->isActive(), true),
                 $this->getName(),
                 $birthdate,
-                $this->role
+                $this->role,
+                $registerTime
             );
     }
 
@@ -350,6 +385,7 @@ class User implements JsonSerializable
                 'birthDate' => $this->getBirthDate()?->format('Y-m-d') ?? null,
                 'name' => $this->getName(),
                 'role' => $this->role->__toString(),
+                'registerTime' => $this->getRegisterTime()?->format('Y-m-d') ?? null,
             ]
         ];
     }
